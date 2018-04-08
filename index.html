@@ -12,71 +12,67 @@
 		<link rel="stylesheet" type="text/css" href="normalize.css">
  	</head>
 
-    <script>
-		(function calculateTruthiness() {
-			var article = document.getElementById("article")
-			var percentage = (typeof percentage !== 'undefined') ? MLFUNCTION : 0;
-			document.getElementById("tPercentage").innerHTML = percentage;
-			document.getElementById("fPercentage").innerHTML = 100 - percentage;
-		})();
-	</script>
+ <body class="container" onload="calculateTruthiness()"><a href=index.html>
+
+	<script type="text/javascript" href="server.js" src="server.js">
+
+	<script>document.getElementById("truthiness").innerHTML = outputText;</script>
+	<script>document.getElementById("fakeness").innerHTML = 100 - outputText;</script>
 
 	<script>
 		function move() {
-			var truthiness = document.getElementById("truthiness").innerHTML;   
-			var tWidth = 0;
-			var tId = setInterval(frame, 10);
+			var truthiness = outputText;   
+			var twidth = 0;
+			var tid = setInterval(frame, 10);
 			function frameT() {
-				if (tWidth >= 100) {
-					clearInterval(tId);
+				if (twidth >= 100) {
+					clearInterval(tid);
 				} else {
-				tWidth++; 
-					truthiness.style.width = tWidth + '%'; 
-					truthiness.innerHTML = tWidth * 1  + '%';
+					twidth++; 
+					truthiness.style.width = twidth + '%'; 
+					truthiness.innerHTML = twidth * 1  + '%';
 				}
 			}
 
-			var fakeness = document.getElementById("fakeness").innerHTML;   
-			var fWidth = 10;
-			var fId = setInterval(frame, 10);
+			var fwidth = 10;
+			var fid = setInterval(frame, 10);
 			function frameF() {
-				if (fWidth >= 100) {
-					clearInterval(fId);
+				if (fwidth <= 0) {
+					clearInterval(fid);
 				} else {
-				fWidth++; 
-					fakeness.style.width = fWidth + '%'; 
-					fakeness.innerHTML = fWidth * 1  + '%';
+					fwidth--; 
+					fakeness.style.width = fwidth + '%'; 
+					fakeness.innerHTML = fwidth * 1  + '%';
 				}
 			}
 		}
 	</script>
 
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+	<script>window.twttr = (function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0],
+	t = window.twttr || {};
+	if (d.getElementById(id)) return t;
+	js = d.createElement(s);
+	js.id = id;
+	js.src = "https://platform.twitter.com/widgets.js";
+	fjs.parentNode.insertBefore(js, fjs);
+	t._e = [];
+	t.ready = function(f) {
+	t._e.push(f);
+	};
+	return t;
+	}(document, "script", "twitter-wjs"));</script>
+
 <center>
-	<body class="container" onload="calculateTruthiness()"><a href=index.html>
-
-		<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12';
-		fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
-
-		<script>window.twttr = (function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0],
-		t = window.twttr || {};
-		if (d.getElementById(id)) return t;
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "https://platform.twitter.com/widgets.js";
-		fjs.parentNode.insertBefore(js, fjs);
-		t._e = [];
-		t.ready = function(f) {
-		t._e.push(f);
-		};
-		return t;
-		}(document, "script", "twitter-wjs"));</script>
 
 		<header>
 			<div class="topnav" id="myTopnav">
@@ -122,7 +118,6 @@
 
 				<script>
 					document.getElementById("truth").onclick = function(){
-						calculateTruthiness(article);
    						$('.shrinker').removeClass('timelapse');
 						setTimeout(function() {
 							$('.shrinker').addClass('timelapse');
@@ -148,8 +143,8 @@
 		<span style="width: 100%">
 
 			<div class="meter-child" onload="calculateTruthiness()" id="truthiness">
-			<div class="meter-child shrinker timelapse" id="fakeness"><span class="data-value" id="fPercentage"></span>% FAKE</span></div>
-			<span class="data-value" id="truthiness"><span id="tPercentage"></span>% TRUTHY</span></span>
+			<div class="meter-child shrinker timelapse" id="fakeness"><span class="data-value" id="fpercentage"></span>% FAKE</span></div>
+			<span class="data-value" id="truthiness"><span id="tpercentage"></span>% TRUTHY</span></span>
 			</div>
 
 			<script>
@@ -204,6 +199,7 @@
    <section class="container" id="story" align="center"><a name="story">
    		<h6>OUR MIRACULOUS & INSPIRING JOURNEY</h6>
    </a></section>
+   </script>
 </span></a>
   </body>
 </center>
@@ -218,4 +214,5 @@
 			<h6>&copy; #pantsonfire 2018</h6>
 		</div>
 	</footer>
+
 </html>
