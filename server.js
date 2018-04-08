@@ -30,7 +30,7 @@ io.on('connection', function(socket) {
       console.log(label);
     });
 
-    var biasDetector = spawn('python', ["News-bias-detector/detect_bias.py", commentBody]);
+    var biasDetector = spawn('python', ["news-bias-detect/detect_bias.py", commentBody]);
     biasDetector.stdout.on('data', function(data) {
       var outputText = data.toString('utf8');
       console.log(outputText);
