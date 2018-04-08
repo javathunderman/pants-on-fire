@@ -34,7 +34,15 @@ io.on('connection', function(socket) {
     biasDetector.stdout.on('data', function(data) {
       var outputText = data.toString('utf8');
       console.log(outputText);
+      io.sockets.emit('broadcast',{ description: outputText});
       //util.log(outputText);
     });
   });
+});
+
+app.get('/main', function(req, res) {
+
+  var output = outputText;
+  res.render(__dirname + "index.html", {output:outputText});
+
 });

@@ -71,12 +71,21 @@ var CommentForm = React.createClass({
     },
     render: function () {
         return (
-            <form className="commentForm" onSubmit={this.handleSubmit}>
-
-                <textarea name="text" ref="text" placeholder="Message" required></textarea><br/>
-                <button type="submit" ref="submitButton">Post</button>
-
-            </form>
+        <form className="commentForm" onSubmit={this.handleSubmit} id="article">
+				<label for="article">My News Of Questionable Origin</label>
+					<textarea name="text" class="u-full-width" placeholder="BUILD THE WALL" id="article" ref="text"></textarea>
+					<div class="row">
+						<div class="six columns">
+							<label class="example-send-yourself-copy">
+								<input type="checkbox"/>
+								<span class="label-body">Email My Proof</span>
+							</label>
+						<label for="exampleEmailInput">"Destination Email (Real Or Fake)"</label>
+						<input class="u-full-width" type="email" placeholder="truthiness@trumptown.com" id="email"/>
+						</div>
+					</div>
+				<button class="button-primary" type="submit" ref="submitButton" id="truth" onclick="move()">Truth Me</button>
+			</form>
         );
     }
 });

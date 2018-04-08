@@ -1,18 +1,185 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Pants On Fire</title>
-    <link rel="stylesheet" href="styles/base.css" />
-    <script src="lib/react.js"></script>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="Fake News?! Dedicated To Truthiness">
+		<meta name="keywords" content="Fake News, Sensationalism, Partisanship, Sentiment Analysis, Machine Learning">
+		<meta name="author" content="#pantsonfire">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Fake News?! Dedicated To Truthiness</title>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<link rel="stylesheet" type="text/css" href="normalize.css">
+		<script src="lib/react.js"></script>
     <script src="lib/JSXTransformer.js"></script>
     <script src="lib/jquery-2.1.3.js"></script>
     <script src="lib/showdown.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-  </head>
-  <body>
+		<script type="js" src="functions.js"> </script>
 
-    <div id="content"></div>
+ 	</head>
 
-    <script type="text/jsx;harmony=true" src="components/comments.js"></script>
+
+
+	<script>
+
+	</script>
+
+<center>
+	<body class="container" onload="calculateTruthiness()"><a href=index.html>
+
+		<div id="fb-root"></div>
+		<script></script>
+
+		<script></script>
+
+		<header>
+			<div class="topnav" id="myTopnav">
+				<a href="#fakenews" class="active">Fake News?!</a>
+				<a href="#share">Share</a>
+				<a href="#donate">Donate</a>
+				<a href="#story">Story</a>
+				<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+<!-- Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon -->
+				<script>
+				</script>
+			</div>
+			<div align="center">
+				<h1>Fake News?!</h1>
+				<h3>Dedicated To Truthiness</h3>
+			</div>
+		</header>
+
+		<section class="container" id="fakenews">
+			<a name="fakenews">
+			<h4>Paste Up To 500 Words Of A News Article To Discover Its Truthiness</h4>
+			<div id="content"></div>
+    	<script type="text/jsx;harmony=true" src="components/comments.js"></script>
+			<!--<form>
+				<label for="article">My News Of Questionable Origin</label>
+					<textarea class="u-full-width" placeholder="BUILD THE WALL" id="article"></textarea>
+					<div class="row">
+						<div class="six columns">
+							<label class="example-send-yourself-copy">
+								<input type="checkbox">
+								<span class="label-body">Email My Proof</span>
+							</label>
+						<label for="exampleEmailInput">Destination Email (Real Or Fake)</label>
+						<input class="u-full-width" type="email" placeholder="truthiness@trumptown.com" id="email">
+						</div>
+					</div>
+				<button class="button-primary" id="truth" onclick="move()">Truth Me</button>
+
+				<script>
+					document.getElementById("truth").onclick = function(){
+						calculateTruthiness(article);
+   						$('.shrinker').removeClass('timelapse');
+						setTimeout(function() {
+							$('.shrinker').addClass('timelapse');
+						}, 500)
+					}
+				</script>
+
+				<script>
+				function move() {$("#truth").click(function() {
+					$('.shrinker').removeClass('timelapse');
+					setTimeout(function() {
+						$('.shrinker').addClass('timelapse');
+					}, 500)
+				});
+				};
+				</script>
+
+			</form>
+		-->
+		<script>
+
+		</script>
+
+		<script>
+
+		</script>
+		</a>
+	</section>
+
+<center>
+	<section class="meter">
+		<span style="width: 100%">
+
+			<div class="meter-child" onload="calculateTruthiness()" id="truthiness">
+				<div class="meter-child shrinker timelapse" id="fakeness">
+					<span class="data-value" id="fPercentage">% FAKE</span>
+				</div>
+			<span class="data-value" id="truthiness"><span id="tPercentage">% TRUTHY</span></span>
+			</div>	<script src = "/socket.io/socket.io.js"></script>
+   <script>
+      var socket = io();
+      socket.on('broadcast',function(data) {
+         document.getElementById("output").innerHTML = data.description;
+         // document.write(data.description);
+      });
+   </script>
+<h1><div id="output"></h1></div>
+<!-- 			<script><h1><%= output %></h1></script> -->
+
+			</script>
+
+		</span>
+
+<!-- 	<div id="myProgress">
+	<div id="myBar">10%</div>
+	</div> -->
+
+<!-- 		<script>
+		function move() {
+			var elem = document.getElementById("myBar");
+			var width = 10;
+			var id = setInterval(frame, 10);
+			function frame() {
+				if (width >= 100) {
+					clearInterval(id);
+				} else {
+				width++;
+					elem.style.width = width + '%';
+					elem.innerHTML = width * 1  + '%';
+				}
+			}
+		}
+	</script>
+ -->
+
+	</section>
+
+	<aside class="container" id="share"><a name="share">
+		<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=#FAKENEWS" data-size="large">Tweet</a>
+		<iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Ffake.news&layout=button&size=large&mobile_iframe=true&width=75&height=28&appId" width="75" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+		<br>
+	</a></aside>
+</center>
+
+	<section class="container" id="donate" align="center"><a name="donate">
+		<button class="button">Donate</button>
+		<br>
+		<br>
+	</a></section>
+
+   <section class="container" id="story" align="center"><a name="story">
+   		<h6>OUR MIRACULOUS & INSPIRING JOURNEY</h6>
+   </a></section>
+</span></a>
   </body>
+</center>
+  	<footer>
+	  	<div class="container" align="center">
+<!--    		 	<nav>
+		    	<a href="index.html#fakenews">Fake News?!</a>
+		    	<a href="index.html#share">Share</a>
+		    	<a href="index.html#donate">Donate</a>
+		    	<a href="index.html#story">Story</a>
+    		</nav> -->
+			<h6>&copy; #pantsonfire 2018</h6>
+		</div>
+	</footer>
+	<script type="text/jsx" src="components/comments.js"></script>
+	<script type="js" src="functions.js"> </script>
 </html>
