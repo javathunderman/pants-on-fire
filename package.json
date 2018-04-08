@@ -1,0 +1,33 @@
+{
+  "name": "annoying-machine",
+  "version": "0.0.1",
+  "description": "Web app that lets users submit mesages to be read aloud by a TTS package.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5",
+    "request": "^2.85.0",
+    "say": "^0.14.0",
+    "socket.io": "^1.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/javathunderman/annoying-machine.git"
+  },
+  "keywords": [
+    "react",
+    "jstalks",
+    "comment",
+    "example"
+  ],
+  "author": "stremann, javathunderman",
+  "bugs": {
+    "url": "https://github.com/javathunderman/annoying-machine/issues/"
+  },
+  "homepage": "https://annoy.nomik.xyz"
+}
