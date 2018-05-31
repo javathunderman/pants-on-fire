@@ -115,11 +115,15 @@
    <script>
       var socket = io();
       socket.on('broadcast',function(data) {
-         document.getElementById("output").innerHTML = data.description;
-         // document.write(data.description);
+		 document.getElementById("output").innerHTML = data.rating;
+         document.getElementById("rating").innerHTML = data.description;
+		 
+		 console.log(data);
+		 console.log(data.rating);
       });
+		//console.log(i);
    </script>
-<h1><div id="output"></h1></div>
+
 <!-- 			<script><h1><%= output %></h1></script> -->
 
 			</script>
@@ -150,6 +154,8 @@
 
 	</section>
 
+<h2><div id="rating"></h2></div>
+<h2><div id="output"></h2></div>
 	<aside class="container" id="share"><a name="share">
 		<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=#FAKENEWS" data-size="large">Tweet</a>
 		<iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Ffake.news&layout=button&size=large&mobile_iframe=true&width=75&height=28&appId" width="75" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>

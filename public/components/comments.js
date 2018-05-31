@@ -57,14 +57,15 @@ var CommentForm = React.createClass({
     handleSubmit: function (e) {
         e.preventDefault();
         var that = this;
-
+		var sitename = this.refs.sitename.getDOMNode().value.trim();
         var text = this.refs.text.getDOMNode().value.trim();
-        var comment = { text: text };
+        var comment = { text: text, sitename: sitename };
         var submitButton = this.refs.submitButton.getDOMNode();
         //submitButton.innerHTML = 'Posting comment...';
         //submitButton.setAttribute('disabled', 'disabled');
         this.props.submitComment(comment, function(err) {
             that.refs.text.getDOMNode().value = '';
+			that.refs.sitename.getDOMNode().value = '';
             submitButton.innerHTML = 'Post';
             //submitButton.removeAttribute('disabled');
         });
@@ -74,16 +75,7 @@ var CommentForm = React.createClass({
         <form className="commentForm" onSubmit={this.handleSubmit} id="article">
 				<label for="article">My News Of Questionable Origin</label>
 					<textarea name="text" class="u-full-width" placeholder="BUILD THE WALL" id="article" ref="text"></textarea>
-					<div class="row">
-						<div class="six columns">
-							<label class="example-send-yourself-copy">
-								<input type="checkbox"/>
-								<span class="label-body">Email My Proof</span>
-							</label>
-						<label for="exampleEmailInput">"Destination Email (Real Or Fake)"</label>
-						<input class="u-full-width" type="email" placeholder="truthiness@trumptown.com" id="email"/>
-						</div>
-					</div>
+					<textarea name="sitename" class="u-full-width" placeholder="nytimes.com" id="sitename" ref="sitename"></textarea>
 				<button class="button-primary" type="submit" ref="submitButton" id="truth" onclick="move()">Truth Me</button>
 			</form>
         );

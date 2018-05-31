@@ -1,4 +1,5 @@
 var fs = require('fs');
+var sources = require("./sources.json");
 var express = require('express');
 var util = require('util');
 var request = require('request');
@@ -16,6 +17,8 @@ var io = require('socket.io')(server);
 io.on('connection', function(socket) {
   socket.on('newComment', function(comment, callback) {
     commentBody = (comment.text);
+	siteName = (comment.sitename);
+	console.log(siteName);
     console.log(commentBody);
     request({
       method: 'post',
@@ -29,15 +32,16 @@ io.on('connection', function(socket) {
       var label = body['label'];
       console.log(label);
     });
-
+	var reliabilityResult = Object(sources[siteName]);
     var biasDetector = spawn('python', ["news-bias-detect/detect_bias.py", commentBody]);
     biasDetector.stdout.on('data', function(data) {
       var outputText = data.toString('utf8');
+	  var rating = (reliabilityResult['type']);
       console.log(outputText);
-      io.sockets.emit('broadcast',{ description: outputText});
+	  io.sockets.emit('broadcast', { description: outputText, rating: rating })
       //util.log(outputText);
     });
-  });
+	});
 });
 
 app.get('/main', function(req, res) {
