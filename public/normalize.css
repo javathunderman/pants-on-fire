@@ -249,7 +249,9 @@ samp {
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
 
-button,
+button {
+	color: white;
+}
 input,
 optgroup,
 select,

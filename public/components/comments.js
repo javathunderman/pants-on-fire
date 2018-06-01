@@ -74,8 +74,12 @@ var CommentForm = React.createClass({
         return (
         <form className="commentForm" onSubmit={this.handleSubmit} id="article">
 				<label for="article">My News Of Questionable Origin</label>
+					<h5>Article text</h5>
 					<textarea name="text" class="u-full-width" placeholder="BUILD THE WALL" id="article" ref="text"></textarea>
+					<h5>Web address of source</h5>
 					<textarea name="sitename" class="u-full-width" placeholder="nytimes.com" id="sitename" ref="sitename"></textarea>
+					<br />
+				    <br />
 				<button class="button-primary" type="submit" ref="submitButton" id="truth" onclick="move()">Truth Me</button>
 			</form>
         );

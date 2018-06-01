@@ -30,7 +30,7 @@ io.on('connection', function(socket) {
       json: true,
     }, function(error, response, body) {
       var label = body['label'];
-      console.log(label);
+      
     });
 	var reliabilityResult = Object(sources[siteName]);
     var biasDetector = spawn('python', ["news-bias-detect/detect_bias.py", commentBody]);
@@ -38,7 +38,7 @@ io.on('connection', function(socket) {
       var outputText = data.toString('utf8');
 	  var rating = (reliabilityResult['type']);
       console.log(outputText);
-	  io.sockets.emit('broadcast', { description: outputText, rating: rating })
+	  io.sockets.emit('broadcast', { description: outputText, rating: rating, label:label})
       //util.log(outputText);
     });
 	});

@@ -103,6 +103,7 @@
 	</section>
 
 <center>
+<!--
 	<section class="meter">
 		<span style="width: 100%">
 
@@ -111,17 +112,21 @@
 					<span class="data-value" id="fPercentage">% FAKE</span>
 				</div>
 			<span class="data-value" id="truthiness"><span id="tPercentage">% TRUTHY</span></span>
-			</div>	<script src = "/socket.io/socket.io.js"></script>
+			</div>	-->
+<script src = "/socket.io/socket.io.js"></script>
    <script>
       var socket = io();
       socket.on('broadcast',function(data) {
-		 document.getElementById("output").innerHTML = data.rating;
-         document.getElementById("rating").innerHTML = data.description;
-		 
+//	 var rating = (data.rating);
+//		 capitalizeFirstLetter(rating);
+		 document.getElementById("rating").innerHTML = data.rating;
+         document.getElementById("output").innerHTML = data.description;
+		 document.getElementById("sentiment").innerHTML = data.sentiment;
 		 console.log(data);
 		 console.log(data.rating);
+		 
       });
-		//console.log(i);
+
    </script>
 
 <!-- 			<script><h1><%= output %></h1></script> -->
@@ -155,16 +160,16 @@
 	</section>
 
 <h2><div id="rating"></h2></div>
-<h2><div id="output"></h2></div>
+<p><div id="output"><p></div>
+<p><div id="sentiment"><p></div>
 	<aside class="container" id="share"><a name="share">
-		<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=#FAKENEWS" data-size="large">Tweet</a>
-		<iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Ffake.news&layout=button&size=large&mobile_iframe=true&width=75&height=28&appId" width="75" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+		<a href="https://twitter.com/intent/tweet?text=#FAKENEWS" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		<br>
 	</a></aside>
 </center>
 
 	<section class="container" id="donate" align="center"><a name="donate">
-		<button class="button">Donate</button>
+		<a href= "bitcoin:1ATdvo8rJFsDjzd8Ay6jRiLRxDAsFRzRm8"><button class="button">Donate</button></a>
 		<br>
 		<br>
 	</a></section>
