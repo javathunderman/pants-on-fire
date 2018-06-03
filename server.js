@@ -5,6 +5,7 @@ var util = require('util');
 var request = require('request');
 var app = express();
 var path = require('path');
+//var label = "";
 var spawn = require("child_process").spawn;
 app.use('/', express.static(path.join(__dirname, 'public')));
 
@@ -18,9 +19,25 @@ io.on('connection', function(socket) {
   socket.on('newComment', function(comment, callback) {
     commentBody = (comment.text);
 	siteName = (comment.sitename);
+	var label = "";
 	console.log(siteName);
     console.log(commentBody);
-    request({
+    
+	var reliabilityResult = Object(sources[siteName]);
+    var biasDetector = spawn('python', ["news-bias-detect/detect_bias.py", commentBody]);
+    biasDetector.stdout.on('data', function(data) {
+      var outputText = data.toString('utf8');
+	  //console.log(furtherInfo);
+	  
+	  var rating = ("Rating: " + reliabilityResult['type']);
+      console.log(outputText);
+	  sentAnalysis(commentBody, outputText, rating);
+	  
+      //util.log(outputText);
+    });
+	});
+function sentAnalysis(commentBody, outputText, rating) {
+request({
       method: 'post',
       url: 'http://text-processing.com/api/sentiment/',
       form: {
@@ -29,19 +46,11 @@ io.on('connection', function(socket) {
 
       json: true,
     }, function(error, response, body) {
-      var label = body['label'];
-      
-    });
-	var reliabilityResult = Object(sources[siteName]);
-    var biasDetector = spawn('python', ["news-bias-detect/detect_bias.py", commentBody]);
-    biasDetector.stdout.on('data', function(data) {
-      var outputText = data.toString('utf8');
-	  var rating = (reliabilityResult['type']);
-      console.log(outputText);
+      var label = ("Sentiment analysis: " + body['label']);
+      console.log(label);
 	  io.sockets.emit('broadcast', { description: outputText, rating: rating, label:label})
-      //util.log(outputText);
     });
-	});
+}
 });
 
 app.get('/main', function(req, res) {

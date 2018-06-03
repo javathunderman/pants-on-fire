@@ -117,13 +117,19 @@
    <script>
       var socket = io();
       socket.on('broadcast',function(data) {
-//	 var rating = (data.rating);
-//		 capitalizeFirstLetter(rating);
+		 data.description = (data.description).replace(/(\r\n|\n|\r)/gm,"");
+		 console.log(data.description);
+		 data.description = (data.description).replace("NEWS BIAS DETECTOR", "");
+		 console.log(data.description);
+		 if(data.description = "No issues found with the content!") {
+			data.description = "No partisan or sensationalist keyword matches.";
+		 }
+		 console.log(data.description);
 		 document.getElementById("rating").innerHTML = data.rating;
          document.getElementById("output").innerHTML = data.description;
-		 document.getElementById("sentiment").innerHTML = data.sentiment;
-		 console.log(data);
-		 console.log(data.rating);
+		 document.getElementById("sentiment").innerHTML = data.label;
+		 //console.log(data);
+		 //console.log(data.rating);
 		 
       });
 
