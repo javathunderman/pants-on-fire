@@ -28,8 +28,15 @@ io.on('connection', function(socket) {
     biasDetector.stdout.on('data', function(data) {
       var outputText = data.toString('utf8');
 	  //console.log(furtherInfo);
-	  
+	  if (reliabilityResult['type'] != undefined) {
 	  var rating = ("Rating: " + reliabilityResult['type']);
+	  }
+	  else if (reliabilityResult['type'] == undefined) {
+	  var rating = ("Source could not be found in unreliable sites database. ");
+	  }
+	  if(outputText == undefined) {
+		 outputText = ("No text provided");
+	  }
       console.log(outputText);
 	  sentAnalysis(commentBody, outputText, rating);
 	  
@@ -48,6 +55,9 @@ request({
     }, function(error, response, body) {
       var label = ("Sentiment analysis: " + body['label']);
       console.log(label);
+	  if (label == undefined) {
+		label = ("Sentiment analysis error");
+	  }
 	  io.sockets.emit('broadcast', { description: outputText, rating: rating, label:label})
     });
 }
