@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/arjun/workspace/tfClassifier/text_classification/model.tflearn"
+all_model_checkpoint_paths: "/home/arjun/workspace/tfClassifier/text_classification/model.tflearn"
