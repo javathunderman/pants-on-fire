@@ -8,6 +8,8 @@ import json
 import string
 import unicodedata
 import sys
+import warnings
+
 
 # a table structure to hold the different punctuation used
 tbl = dict.fromkeys(i for i in range(sys.maxunicode)
@@ -26,7 +28,7 @@ data = None
 # read the json file and load the training data
 with open('data.json') as json_data:
     data = json.load(json_data)
-    print(data)
+    #print(data)
 
 # get a list of all categories to train for
 categories = list(data.keys())
@@ -38,10 +40,10 @@ for each_category in data.keys():
     for each_sentence in data[each_category]:
         # remove any punctuation from the sentence
         each_sentence = remove_punctuation(each_sentence)
-        print(each_sentence)
+        #print(each_sentence)
         # extract words from each sentence and append to the word list
         w = nltk.word_tokenize(each_sentence)
-        print("tokenized words: ", w)
+        #print("tokenized words: ", w)
         words.extend(w)
         docs.append((w, each_category))
 
@@ -49,8 +51,8 @@ for each_category in data.keys():
 words = [stemmer.stem(w.lower()) for w in words]
 words = sorted(list(set(words)))
 
-print(words)
-print(docs)
+#print(words)
+#print(docs)
 
 # create our training data
 training = []
@@ -81,30 +83,25 @@ for doc in docs:
 random.shuffle(training)
 training = np.array(training)
 
-# trainX contains the Bag of words and train_y contains the label/ category
-train_x = list(training[:, 0])
-train_y = list(training[:, 1])
-
-# reset underlying graph data
 tf.reset_default_graph()
 # Build neural network
-net = tflearn.input_data(shape=[None, len(train_x[0])])
+net = tflearn.input_data(shape=[None, 2727])
 net = tflearn.fully_connected(net, 8)
 net = tflearn.fully_connected(net, 8)
-net = tflearn.fully_connected(net, len(train_y[0]), activation='softmax')
+net = tflearn.fully_connected(net, 2, activation='softmax')
 net = tflearn.regression(net)
 
 # Define model and setup tensorboard
 model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 # Start training (apply gradient descent algorithm)
-model.fit(train_x, train_y, n_epoch=1000, batch_size=8, show_metric=True)
-model.save('model.tflearn')
+#model.fit(train_x, train_y, n_epoch=1000, batch_size=8, show_metric=True)
+model.load('model.tflearn')
 
 
 # let's test the mdodel for a few sentences:
 # the first two sentences are used for training, and the last two sentences are not present in the training data.
-sent_1 = ""
-sent_2 = ""
+sent_1 = sys.argv[0]
+sent_2 = sys.argv[1]
 
 # a method that takes in a sentence and list of all words
 # and returns the data in a form the can be fed to tensorflow
@@ -129,5 +126,5 @@ def get_tf_record(sentence):
 # we can start to predict the results for each of the 4 sentences
 print(categories[np.argmax(model.predict([get_tf_record(sent_1)]))])
 print(categories[np.argmax(model.predict([get_tf_record(sent_2)]))])
-print(categories[np.argmax(model.predict([get_tf_record(sent_3)]))])
-print(categories[np.argmax(model.predict([get_tf_record(sent_4)]))])
+#print(categories[np.argmax(model.predict([get_tf_record(sent_3)]))])
+#print(categories[np.argmax(model.predict([get_tf_record(sent_4)]))])
