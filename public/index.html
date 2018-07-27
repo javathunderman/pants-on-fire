@@ -121,8 +121,11 @@
 		 console.log(data.description);
 		 data.description = (data.description).replace("NEWS BIAS DETECTOR", "");
 		 console.log(data.description);
-		 if(data.description = "No issues found with the content!") {
-			data.description = "No partisan or sensationalist keyword matches.";
+		 if(data.description = "unreliable") {
+			data.description = "Uh oh! This article was flagged by our automated BS detector. ";
+		 }
+		 else if (data.description = "reliable") {
+			 data.description = "Our automated BS detector didn't find anything wrong with this article. ";
 		 }
 		 console.log(data.description);
 		 document.getElementById("rating").innerHTML = data.rating;
@@ -130,7 +133,7 @@
 		 document.getElementById("sentiment").innerHTML = data.label;
 		 //console.log(data);
 		 //console.log(data.rating);
-		 
+
       });
 
    </script>

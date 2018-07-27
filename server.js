@@ -22,14 +22,14 @@ io.on('connection', function(socket) {
 	var label = "";
 	console.log(siteName);
     console.log(commentBody);
-    
+
 	var reliabilityResult = Object(sources[siteName]);
-    var biasDetector = spawn('python', ["news-bias-detect/detect_bias.py", commentBody]);
+    var biasDetector = spawn('python3', ["text_classification/classify_text.py", commentBody]);
     biasDetector.stdout.on('data', function(data) {
       var outputText = data.toString('utf8');
-	  //console.log(furtherInfo);
+	    console.log(outputText);
 	  if (reliabilityResult['type'] != undefined) {
-	  var rating = ("Rating: " + reliabilityResult['type']);
+	  var rating = ("Source rating: " + reliabilityResult['type']);
 	  }
 	  else if (reliabilityResult['type'] == undefined) {
 	  var rating = ("Source could not be found in unreliable sites database. ");
@@ -39,7 +39,7 @@ io.on('connection', function(socket) {
 	  }
       console.log(outputText);
 	  sentAnalysis(commentBody, outputText, rating);
-	  
+
       //util.log(outputText);
     });
 	});

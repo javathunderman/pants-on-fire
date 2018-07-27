@@ -9,7 +9,7 @@ import string
 import unicodedata
 import sys
 import warnings
-
+path = ""
 
 # a table structure to hold the different punctuation used
 tbl = dict.fromkeys(i for i in range(sys.maxunicode)
@@ -26,7 +26,7 @@ stemmer = LancasterStemmer()
 data = None
 
 # read the json file and load the training data
-with open('data.json') as json_data:
+with open(path + 'data.json') as json_data:
     data = json.load(json_data)
     #print(data)
 
@@ -95,13 +95,13 @@ net = tflearn.regression(net)
 model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 # Start training (apply gradient descent algorithm)
 #model.fit(train_x, train_y, n_epoch=1000, batch_size=8, show_metric=True)
-model.load('model.tflearn')
+model.load(path + 'model.tflearn')
 
 
 # let's test the mdodel for a few sentences:
 # the first two sentences are used for training, and the last two sentences are not present in the training data.
 sent_1 = sys.argv[0]
-sent_2 = sys.argv[1]
+#sent_2 = sys.argv[1]
 
 # a method that takes in a sentence and list of all words
 # and returns the data in a form the can be fed to tensorflow
@@ -125,6 +125,6 @@ def get_tf_record(sentence):
 
 # we can start to predict the results for each of the 4 sentences
 print(categories[np.argmax(model.predict([get_tf_record(sent_1)]))])
-print(categories[np.argmax(model.predict([get_tf_record(sent_2)]))])
+#print(categories[np.argmax(model.predict([get_tf_record(sent_2)]))])
 #print(categories[np.argmax(model.predict([get_tf_record(sent_3)]))])
 #print(categories[np.argmax(model.predict([get_tf_record(sent_4)]))])
