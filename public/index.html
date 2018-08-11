@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="description" content="Fake News?! Dedicated To Truthiness">
-		<meta name="keywords" content="Fake News, Sensationalism, Partisanship, Sentiment Analysis, Machine Learning">
-		<meta name="author" content="#pantsonfire">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Fake News?! Dedicated To Truthiness</title>
-		<link rel="stylesheet" type="text/css" href="main.css">
-		<link rel="stylesheet" type="text/css" href="normalize.css">
-		<script src="lib/react.js"></script>
-    <script src="lib/JSXTransformer.js"></script>
-    <script src="lib/jquery-2.1.3.js"></script>
-    <script src="lib/showdown.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-		<script type="js" src="functions.js"> </script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Fake News?! Dedicated To Truthiness">
+	<meta name="keywords" content="Fake News, Sensationalism, Partisanship, Sentiment Analysis, Machine Learning">
+	<meta name="author" content="#pantsonfire">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fake News?! Dedicated To Truthiness</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="normalize.css">
+	<script src="lib/react.js"></script>
+	<script src="lib/JSXTransformer.js"></script>
+	<script src="lib/jquery-2.1.3.js"></script>
+	<script src="lib/showdown.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
 
- 	</head>
-
-
-
-	<script>
-
-	</script>
+</head>
+<script>
+</script>
 
 <center>
+
 	<body class="container" onload="calculateTruthiness()">
 
 		<div id="fb-root"></div>
@@ -35,150 +31,83 @@
 
 		<header>
 			<div align="center">
-				<h1>Fake News?!</h1>
+				<h1>Pants on Fire</h1>
 				<h3>Dedicated To Truthiness</h3>
 			</div>
 		</header>
 
 		<section class="container" id="fakenews">
 			<a name="fakenews">
-			<h4>Paste Up To 500 Words Of A News Article To Discover Its Truthiness</h4>
-			<div id="content"></div>
-    	<script type="text/jsx;harmony=true" src="components/comments.js"></script>
-			<!--<form>
-				<label for="article">My News Of Questionable Origin</label>
-					<textarea class="u-full-width" placeholder="BUILD THE WALL" id="article"></textarea>
-					<div class="row">
-						<div class="six columns">
-							<label class="example-send-yourself-copy">
-								<input type="checkbox">
-								<span class="label-body">Email My Proof</span>
-							</label>
-						<label for="exampleEmailInput">Destination Email (Real Or Fake)</label>
-						<input class="u-full-width" type="email" placeholder="truthiness@trumptown.com" id="email">
-						</div>
-					</div>
-				<button class="button-primary" id="truth" onclick="move()">Truth Me</button>
+				<h4>Paste Up To 500 Words Of A News Article To Discover Its Truthiness</h4>
+				<div id="content"></div>
+				<script type="text/jsx;harmony=true" src="components/comments.js"></script>
+				<script>
+				</script>
 
 				<script>
-					document.getElementById("truth").onclick = function(){
-						calculateTruthiness(article);
-   						$('.shrinker').removeClass('timelapse');
-						setTimeout(function() {
-							$('.shrinker').addClass('timelapse');
-						}, 500)
+				</script>
+			</a>
+		</section>
+
+		<center>
+			<script src="/socket.io/socket.io.js"></script>
+			<script>
+				var socket = io();
+				socket.on('broadcast', function(data) {
+					data.description = (data.description).replace(/(\r\n|\n|\r)/gm, "");
+					console.log(data.description);
+					data.description = (data.description).replace("NEWS BIAS DETECTOR", "");
+					console.log(data.description);
+					if (data.description = "unreliable") {
+						data.description = "Uh oh! This article was flagged by our automated BS detector. ";
+					} else if (data.description = "reliable") {
+						data.description = "Our automated BS detector didn't find anything wrong with this article. ";
 					}
-				</script>
+					console.log(data.description);
+					document.getElementById("rating").innerHTML = data.rating;
+					document.getElementById("output").innerHTML = data.description;
+					document.getElementById("sentiment").innerHTML = data.label;
 
-				<script>
-				function move() {$("#truth").click(function() {
-					$('.shrinker').removeClass('timelapse');
-					setTimeout(function() {
-						$('.shrinker').addClass('timelapse');
-					}, 500)
 				});
-				};
-				</script>
-
-			</form>
-		-->
-		<script>
-
-		</script>
-
-		<script>
-
-		</script>
-		</a>
-	</section>
-
-<center>
-<!--
-	<section class="meter">
-		<span style="width: 100%">
-
-			<div class="meter-child" onload="calculateTruthiness()" id="truthiness">
-				<div class="meter-child shrinker timelapse" id="fakeness">
-					<span class="data-value" id="fPercentage">% FAKE</span>
-				</div>
-			<span class="data-value" id="truthiness"><span id="tPercentage">% TRUTHY</span></span>
-			</div>	-->
-<script src = "/socket.io/socket.io.js"></script>
-   <script>
-      var socket = io();
-      socket.on('broadcast',function(data) {
-		 data.description = (data.description).replace(/(\r\n|\n|\r)/gm,"");
-		 console.log(data.description);
-		 data.description = (data.description).replace("NEWS BIAS DETECTOR", "");
-		 console.log(data.description);
-		 if(data.description = "unreliable") {
-			data.description = "Uh oh! This article was flagged by our automated BS detector. ";
-		 }
-		 else if (data.description = "reliable") {
-			 data.description = "Our automated BS detector didn't find anything wrong with this article. ";
-		 }
-		 console.log(data.description);
-		 document.getElementById("rating").innerHTML = data.rating;
-         document.getElementById("output").innerHTML = data.description;
-		 document.getElementById("sentiment").innerHTML = data.label;
-		 //console.log(data);
-		 //console.log(data.rating);
-
-      });
-
-   </script>
-
-<!-- 			<script><h1><%= output %></h1></script> -->
+			</script>
 
 			</script>
 
-		</span>
+			</span>
+			</section>
 
-<!-- 	<div id="myProgress">
-	<div id="myBar">10%</div>
-	</div> -->
+			<h2><div id="rating"></h2></div>
+			<p>
+				<div id="output">
+					<p>
+				</div>
+				<p>
+					<div id="sentiment">
+						<p>
+					</div>
+					<aside class="container" id="share"><a name="share">
+		<a href="https://twitter.com/intent/tweet?text=#FAKENEWS" class="twitter-share-button" data-show-count="false">Tweet</a>
+						<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+						<br>
+						</a>
+					</aside>
+		</center>
 
-<!-- 		<script>
-		function move() {
-			var elem = document.getElementById("myBar");
-			var width = 10;
-			var id = setInterval(frame, 10);
-			function frame() {
-				if (width >= 100) {
-					clearInterval(id);
-				} else {
-				width++;
-					elem.style.width = width + '%';
-					elem.innerHTML = width * 1  + '%';
-				}
-			}
-		}
-	</script>
- -->
-
-	</section>
-
-<h2><div id="rating"></h2></div>
-<p><div id="output"><p></div>
-<p><div id="sentiment"><p></div>
-	<aside class="container" id="share"><a name="share">
-		<a href="https://twitter.com/intent/tweet?text=#FAKENEWS" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-		<br>
-	</a></aside>
-</center>
-
-	<section class="container" id="donate" align="center"><a name="donate">
+		<section class="container" id="donate" align="center"><a name="donate">
 		<a href= "bitcoin:1ATdvo8rJFsDjzd8Ay6jRiLRxDAsFRzRm8"><button class="button">Donate</button></a>
-		<br>
-		<br>
-	</a></section>
-</span></a>
-  </body>
+			<br>
+			<br>
+			</a>
+		</section>
+		</span>
+		</a>
+	</body>
 </center>
-  	<footer>
-	  	<div class="container" align="center">
-		</div>
-	</footer>
-	<script type="text/jsx" src="components/comments.js"></script>
-	<script type="js" src="functions.js"> </script>
+<footer>
+	<div class="container" align="center">
+	</div>
+</footer>
+<script type="text/jsx" src="components/comments.js"></script>
+<script type="js" src="functions.js"> </script>
+
 </html>

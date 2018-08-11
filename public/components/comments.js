@@ -28,31 +28,6 @@ var CommentBox = React.createClass({
         );
     }
 });
-/* var CommentList = React.createClass({
-    render: function () {
-        var Comments = (<div>Loading messages...</div>);
-        if (this.props.comments) {
-            Comments = this.props.comments.map(function (comment) {
-                return (<Comment comment={comment} />);
-            });
-        }
-        return (
-            <div className="commentList">
-				{Comments}
-            </div>
-        );
-    }
-}); */
-// var Comment = React.createClass({
-//     render: function () {
-//         return (
-//             <div className="comment">
-//                 <span className="author">{this.props.comment.author}</span><br/>
-//                 <div className="body">{this.props.comment.text}</div>
-//             </div>
-//         );
-//     }
-// });
 var CommentForm = React.createClass({
     handleSubmit: function (e) {
         e.preventDefault();
@@ -62,13 +37,9 @@ var CommentForm = React.createClass({
         var text = this.refs.text.getDOMNode().value.trim();
         var comment = { text: text, sitename: sitename };
         var submitButton = this.refs.submitButton.getDOMNode();
-        //submitButton.innerHTML = 'Posting comment...';
-        //submitButton.setAttribute('disabled', 'disabled');
         this.props.submitComment(comment, function(err) {
             that.refs.text.getDOMNode().value = '';
 			that.refs.sitename.getDOMNode().value = '';
-            submitButton.innerHTML = 'Post';
-            //submitButton.removeAttribute('disabled');
         });
     },
     render: function () {
@@ -86,7 +57,6 @@ var CommentForm = React.createClass({
         );
     }
 });
-
 React.render(
     <CommentBox/>,
     document.getElementById('content')
