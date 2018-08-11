@@ -9,7 +9,6 @@ import string
 import unicodedata
 import sys
 import warnings
-path = ""
 
 # a table structure to hold the different punctuation used
 tbl = dict.fromkeys(i for i in range(sys.maxunicode)
@@ -26,7 +25,7 @@ stemmer = LancasterStemmer()
 data = None
 
 # read the json file and load the training data
-with open(path + 'data.json') as json_data:
+with open('text_classification/data.json') as json_data:
     data = json.load(json_data)
     #print(data)
 
@@ -95,7 +94,7 @@ net = tflearn.regression(net)
 model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 # Start training (apply gradient descent algorithm)
 #model.fit(train_x, train_y, n_epoch=1000, batch_size=8, show_metric=True)
-model.load(path + 'model.tflearn')
+model.load('text_classification/model.tflearn')
 
 
 # let's test the mdodel for a few sentences:

@@ -57,6 +57,7 @@ var CommentForm = React.createClass({
     handleSubmit: function (e) {
         e.preventDefault();
         var that = this;
+        rating.innerHTML = "Please wait...";
 		var sitename = this.refs.sitename.getDOMNode().value.trim();
         var text = this.refs.text.getDOMNode().value.trim();
         var comment = { text: text, sitename: sitename };
