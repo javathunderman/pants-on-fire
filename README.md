@@ -1,5 +1,5 @@
 # pants-on-fire
-ML based BS detector (aren't aconyms fun?)
+ML based BS detector
 
 A lot of code forked from https://github.com/ahaldar/News-bias-detector, and https://github.com/sourcedexter/tfClassifier.
 
